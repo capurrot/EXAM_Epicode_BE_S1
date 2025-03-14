@@ -23,8 +23,17 @@ public class Immagine extends ElementoMultimediale implements Visualizzabile {
         System.out.println("Luminosità diminuita: " + luminosita);
     }
 
+    //metodo che ritorna asterischi per la luminosita della registrazione
+    public String getAsterischi() {
+        String asterischi = "";
+        for (int i = 0; i < luminosita; i++) {
+            asterischi += "*";
+        }
+        return asterischi;
+    }
+
     @Override
     public void show() {
-        System.out.println("Visualizzazione immagine" + getTitle());
+        System.out.println("Visualizzazione immagine" + getTitle() + " " + getAsterischi());
     }
 }

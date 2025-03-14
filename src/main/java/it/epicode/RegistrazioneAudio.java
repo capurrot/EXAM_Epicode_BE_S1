@@ -15,18 +15,29 @@ public class RegistrazioneAudio extends ElementoMultimediale implements Riproduc
     }
 
     //metodi per aumentare e diminuire il volume
-    public void aumentaVolume() {
+    public void alzaVolume() {
         volume++;
         System.out.println("Volume aumentato: " + volume);
     }
 
-    public void diminuisciVolume() {
+    public void abbasaVolume() {
         volume--;
         System.out.println("Volume diminuito: " + volume);
     }
 
+    //metodo che ritorna punti esclamativi per il volume della registrazione
+    public String getPuntiEsclamativi() {
+        String puntiEsclamativi = "";
+        for (int i = 0; i < volume; i++) {
+            puntiEsclamativi += "!";
+        }
+        return puntiEsclamativi;
+    }
+
     @Override
     public void play() {
-        System.out.println("Riproduzione audio");
+        for (int i = 0; i < durata; i++) {
+            System.out.println("Riproduzione registrazione audio: " + getTitle() + " " + getPuntiEsclamativi());
+        }
     }
 }

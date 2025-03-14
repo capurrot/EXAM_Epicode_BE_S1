@@ -17,12 +17,12 @@ public class Video extends ElementoMultimediale implements Riproducibile {
     }
 
     //metodi per aumentare e diminuire il volume e la luminosita
-    public void aumentaVolume() {
+    public void alzaVolume() {
         volume++;
         System.out.println("Volume aumentato: " + volume);
     }
 
-    public void diminuisciVolume() {
+    public void abbassaVolume() {
         volume--;
         System.out.println("Volume diminuito: " + volume);
     }
@@ -37,9 +37,29 @@ public class Video extends ElementoMultimediale implements Riproducibile {
         System.out.println("Luminosità diminuita: " + luminosita);
     }
 
+    //metodo che ritorna punti esclamativi per il volume della registrazione
+    public String getPuntiEsclamativi() {
+        String puntiEsclamativi = "";
+        for (int i = 0; i < volume; i++) {
+            puntiEsclamativi += "!";
+        }
+        return puntiEsclamativi;
+    }
+
+    //metodo che ritorna asterischi per la luminosita della registrazione
+    public String getAsterischi() {
+        String asterischi = "";
+        for (int i = 0; i < luminosita; i++) {
+            asterischi += "*";
+        }
+        return asterischi;
+    }
+
+
     @Override
     public void play() {
-        for (int i = 0; i < durata; i++) {
-            System.out.println("Riproduzione video");
+            for (int i = 0; i < durata; i++) {
+                System.out.println("Riproduzione video: " + getTitle() + " " + getPuntiEsclamativi() + " " + getAsterischi());
+        }
     }
 }
