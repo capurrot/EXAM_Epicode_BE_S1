@@ -62,7 +62,6 @@ public class Video extends ElementoMultimediale implements Riproducibile {
     public void play() {
         Scanner scanner = new Scanner(System.in);
         boolean cambiaVolume = true;
-        boolean cambiaLuminosita = true;
         do {
             for (int i = 0; i < durata; i++) {
                 System.out.println("Riproduzione video: " + getTitle() + " " + getPuntiEsclamativi() + " " + getAsterischi());
@@ -79,11 +78,12 @@ public class Video extends ElementoMultimediale implements Riproducibile {
                 }
             } else if (scelta.equals("n")) {
                 cambiaVolume = false;
-                for (int i = 0; i < durata; i++) {
-                    System.out.println("Riproduzione video: " + getTitle() + " " + getPuntiEsclamativi() + " " + getAsterischi());
-                }
-                cambiaLuminosita = true;
+
+                boolean cambiaLuminosita = true;
                 do {
+                    for (int i = 0; i < durata; i++) {
+                        System.out.println("Riproduzione video: " + getTitle() + " " + getPuntiEsclamativi() + " " + getAsterischi());
+                    }
                     System.out.println("La luminosita é impostata a: " + luminosita + ". Vuoi alzare o abbassare la luminosita? (s: Sì/n: No)");
                     String scelta3 = scanner.nextLine();
                     if (scelta3.equals("s")) {
