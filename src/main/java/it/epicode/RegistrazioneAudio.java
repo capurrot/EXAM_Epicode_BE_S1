@@ -2,6 +2,8 @@ package it.epicode;
 
 import lombok.Getter;
 
+import java.util.Scanner;
+
 @Getter
 public class RegistrazioneAudio extends ElementoMultimediale implements Riproducibile {
     private int durata;
@@ -36,8 +38,32 @@ public class RegistrazioneAudio extends ElementoMultimediale implements Riproduc
 
     @Override
     public void play() {
-        for (int i = 0; i < durata; i++) {
-            System.out.println("Riproduzione registrazione audio: " + getTitle() + " " + getPuntiEsclamativi());
-        }
+        Scanner scanner = new Scanner(System.in);
+        boolean cambiaVolume = true;
+        do {
+            for (int i = 0; i < durata; i++) {
+                System.out.println("Riproduzione registrazione audio: " + getTitle() + " " + getPuntiEsclamativi());
+            }
+            System.out.println("Il volume é impostato a: " + volume + ". Vuoi alzare o abbassare il volume? (s: Sì/n: No)");
+            String scelta = scanner.nextLine();
+            if (scelta.equals("s")) {
+                System.out.println("Vuoi alzare o abbassare il volume? (+: Alza/-: Abbassa)");
+                String scelta2 = scanner.nextLine();
+                if (scelta2.equals("+")) {
+                    alzaVolume();
+                } else if (scelta2.equals("-")) {
+                    abbasaVolume();
+                }
+            } else if (scelta.equals("n")) {
+                cambiaVolume = false;
+            } else {
+                System.out.println("Scelta non valida. Riprova.");
+            }
+        } while (cambiaVolume);
+    }
+
+    @Override
+    public void esegui() {
+        play();
     }
 }

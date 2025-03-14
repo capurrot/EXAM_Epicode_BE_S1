@@ -2,6 +2,8 @@ package it.epicode;
 
 import lombok.Getter;
 
+import java.util.Scanner;
+
 @Getter
 public class Video extends ElementoMultimediale implements Riproducibile {
     private int durata;
@@ -22,7 +24,7 @@ public class Video extends ElementoMultimediale implements Riproducibile {
         System.out.println("Volume aumentato: " + volume);
     }
 
-    public void abbassaVolume() {
+    public void abbasaVolume() {
         volume--;
         System.out.println("Volume diminuito: " + volume);
     }
@@ -58,8 +60,54 @@ public class Video extends ElementoMultimediale implements Riproducibile {
 
     @Override
     public void play() {
+        Scanner scanner = new Scanner(System.in);
+        boolean cambiaVolume = true;
+        boolean cambiaLuminosita = true;
+        do {
             for (int i = 0; i < durata; i++) {
                 System.out.println("Riproduzione video: " + getTitle() + " " + getPuntiEsclamativi() + " " + getAsterischi());
-        }
+            }
+            System.out.println("Il volume é impostato a: " + volume + ". Vuoi alzare o abbassare il volume? (s: Sì/n: No)");
+            String scelta = scanner.nextLine();
+            if (scelta.equals("s")) {
+                System.out.println("Vuoi alzare o abbassare il volume? (+: Alza/-: Abbassa)");
+                String scelta2 = scanner.nextLine();
+                if (scelta2.equals("+")) {
+                    alzaVolume();
+                } else if (scelta2.equals("-")) {
+                    abbasaVolume();
+                }
+            } else if (scelta.equals("n")) {
+                cambiaVolume = false;
+                for (int i = 0; i < durata; i++) {
+                    System.out.println("Riproduzione video: " + getTitle() + " " + getPuntiEsclamativi() + " " + getAsterischi());
+                }
+                cambiaLuminosita = true;
+                do {
+                    System.out.println("La luminosita é impostata a: " + luminosita + ". Vuoi alzare o abbassare la luminosita? (s: Sì/n: No)");
+                    String scelta3 = scanner.nextLine();
+                    if (scelta3.equals("s")) {
+                        System.out.println("Vuoi alzare o abbassare la luminosita? (+: Alza/-: Abbassa)");
+                        String scelta4 = scanner.nextLine();
+                        if (scelta4.equals("+")) {
+                            aumentaLuminosita();
+                        } else if (scelta4.equals("-")) {
+                            diminuisciLuminosita();
+                        }
+                    } else if (scelta3.equals("n")) {
+                        cambiaLuminosita = false;
+                    } else {
+                        System.out.println("Scelta non valida. Riprova.");
+                    }
+                } while (cambiaLuminosita);
+            } else {
+                System.out.println("Scelta non valida. Riprova.");
+            }
+        } while (cambiaVolume);
+    }
+
+    @Override
+    public void esegui() {
+        play();
     }
 }

@@ -2,6 +2,8 @@ package it.epicode;
 
 import lombok.Getter;
 
+import java.util.Scanner;
+
 @Getter
 public class Immagine extends ElementoMultimediale implements Visualizzabile {
     private int luminosita;
@@ -32,8 +34,34 @@ public class Immagine extends ElementoMultimediale implements Visualizzabile {
         return asterischi;
     }
 
+
     @Override
     public void show() {
-        System.out.println("Visualizzazione immagine" + getTitle() + " " + getAsterischi());
+        Scanner scanner = new Scanner(System.in);
+        boolean cambiaLuminosita = true;
+        do {
+            System.out.println("Visualizzazione immagine: " + getTitle() + " " + getAsterischi());
+            System.out.println("La luminosita é impostato a: " + luminosita + ". Vuoi alzare o abbassare la luminosita? (s: Sì/n: No)");
+            String scelta = scanner.nextLine();
+            if (scelta.equals("s")) {
+                System.out.println("Vuoi alzare o abbassare la luminosita? (+: Alza/-: Abbassa)");
+                String scelta2 = scanner.nextLine();
+                if (scelta2.equals("+")) {
+                    aumentaLuminosita();
+                } else if (scelta2.equals("-")) {
+                    diminuisciLuminosita();
+                }
+            } else if (scelta.equals("n")) {
+                cambiaLuminosita = false;
+            } else {
+                System.out.println("Scelta non valida. Riprova.");
+            }
+        } while (cambiaLuminosita);
+
+    }
+
+    @Override
+    public void esegui() {
+        show();
     }
 }

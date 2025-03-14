@@ -9,4 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public abstract class ElementoMultimediale {
     private String title;
+
+    public abstract void esegui();
 }

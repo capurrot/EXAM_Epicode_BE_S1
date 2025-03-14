@@ -2,10 +2,10 @@ package it.epicode;
 
 import java.util.Scanner;
 
-public class Main {
+public class MainPlayer {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        ElementoMultimediale[] elementoMultimediale = new ElementoMultimediale[5];
         boolean menu = true;
         do {
 
@@ -23,10 +23,9 @@ public class Main {
 
             System.out.print("Scelta: ");
             int scelta = scanner.nextInt();
-            ElementoMultimediale[] elementoMultimediale = new ElementoMultimediale[5];
-
 
             switch (scelta) {
+
                 case 1:
                     System.out.println();
                     System.out.println("------  Inserisci i 5 elementi nel player ------");
@@ -87,16 +86,51 @@ public class Main {
                                 System.out.println("*************************************");
                                 System.out.println();
                                 break;
+                            default:
+                                System.out.println();
+                                System.out.println("Devi inserire un numero da 1 a 3");
+                                System.out.println();
+                                System.out.println("*************************************");
+                                System.out.println();
                         }
                     }
-                case 2:
-                    System.out.println("Player degli elementi");
-                    if (elementoMultimediale != null) {
-                        System.out.println();
-                        System.out.println("Devi inserire i 5 elementi per essere riprodotti");
-                        System.out.println();
-                    } else {
 
+                    break;
+                case 2:
+                    System.out.println();
+                    System.out.println("------  Player degli elementi ------");
+                    System.out.println();
+
+                    boolean riproduzione = true;
+
+                    if (elementoMultimediale[4] == null) {
+                        System.out.println("Devi prima inserire gli elementi nel player");
+                    } else {
+                        do {
+                            System.out.println("Seleziona uno dei 5 elementi per riprodurli (inserisci un numero da 1 a 5) o inserisci 0 per uscire");
+                            int elemento = scanner.nextInt();
+                            switch (elemento) {
+                                case 1:
+                                    elementoMultimediale[0].esegui();
+                                    break;
+                                case 2:
+                                    elementoMultimediale[1].esegui();
+                                    break;
+                                case 3:
+                                    elementoMultimediale[2].esegui();
+                                    break;
+                                case 4:
+                                    elementoMultimediale[3].esegui();
+                                    break;
+                                case 5:
+                                    elementoMultimediale[4].esegui();
+                                    break;
+                                case 0:
+                                    riproduzione = false;
+                                default:
+                                    System.out.println("Selezione non valida");
+                            }
+                        } while (riproduzione);
                     }
                     break;
                 case 3:
@@ -106,10 +140,5 @@ public class Main {
                     System.out.println("Scelta non valida");
             }
         } while (menu);
-
-
-
-
-
     }
 }
